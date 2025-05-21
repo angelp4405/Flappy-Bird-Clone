@@ -8,17 +8,22 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D bird;
     public Text scoreUI;
     int score = 0;
+
+    //True OR False value to chekc if bird is alive or not
+    public bool isAlive;
+
     // Start is called before the first frame update
     void Start()
     {
         bird = GetComponent<Rigidbody2D>();
-        
+        // Set the alive to true
+        isAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-     if(Input.GetKeyDown(KeyCode.Space)) 
+     if(Input.GetKeyDown(KeyCode.Space) && isAlive == true) 
      {
         bird.AddForce(new Vector2(0,1) * 200);
      }  
@@ -33,5 +38,12 @@ public class PlayerController : MonoBehaviour
 
             scoreUI.text = score.ToString();
         }
+    }
+
+    // Check when the player collides with something in the scene
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Set is Alive varible to false when a collision happens with the player
+        isAlive = false;
     }
 }
