@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public void RestartGame() {
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    
     Rigidbody2D bird;
     public Text scoreUI;
+    public TextMeshProUGUI gameOverText;
     int score = 0;
 
     //True OR False value to chekc if bird is alive or not
@@ -27,6 +33,11 @@ public class PlayerController : MonoBehaviour
      {
         bird.AddForce(new Vector2(0,1) * 200);
      }  
+     
+     if(isAlive == false)
+     {
+        GameOver();
+     }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -45,5 +56,10 @@ public class PlayerController : MonoBehaviour
     {
         // Set is Alive varible to false when a collision happens with the player
         isAlive = false;
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
     }
 }

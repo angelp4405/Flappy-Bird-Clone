@@ -10,8 +10,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnPipes", 1.0f, 4
-        .0f);
+        InvokeRepeating("SpawnPipes", 1.0f, 4.0f);
         // Find the player controller script when the game Starts
         playerControllerScript = GameObject.Find("Red_Bird_0").GetComponent<PlayerController>();
     }
